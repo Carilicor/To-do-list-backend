@@ -3,7 +3,7 @@ import dbConnect from "./dbConnect.js";
 
 export function createList(req, res) {
     const db = dbConnect()  // Connect to Firestore 
-    db.collection('toPost').add(req.body)  // Add new item to ToDo Collection
+    db.collection('tasks').add(req.body)  // Add new item to ToDo Collection
     // Send back a response (err/not)
     .then(doc => res.status(201).send({success: true, message: 'Added item'}))
     .catch(doc => res.status(501).send({success: false, message: err}))
