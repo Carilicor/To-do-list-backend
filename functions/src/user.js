@@ -1,13 +1,13 @@
 import jwt from 'jsonwebtoken';
 import dbConnect from "./dbConnect.js";
-import {secretKey} from '../secrets.js'
+import {secretKey} from '../secrets.js' 
 
-export async function userLogin(req, res) {
-    const { email, password } = req.body
+export async function userLogin(req, res) { // function using params req & res
+    const { email, password } = req.body // access data 
     console.log("login",email,password)
-    const db = dbConnect()
+    const db = dbConnect()  // connect to database 
     const matchingUsers = await db.collection('users')
-        .where('email', '==', email.toLowerCase())
+        .where('email', '==', email.toLowerCase()) 
         .where('password', '==', password)
         .get()
     const users = matchingUsers.docs.map(doc => ({ ...doc.data(), uid: doc.id }))
